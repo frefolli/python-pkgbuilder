@@ -18,7 +18,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Generate PKGBUILD
-        run: python -m pkgbuilder --version "${{ env.BRANCH_NAME }}"  > PKGBUILD
+        run: python -m pkgbuilder > PKGBUILD
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
