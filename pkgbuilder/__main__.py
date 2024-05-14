@@ -53,12 +53,12 @@ class Pkgbuilder:
 
     def print_sources(self):
         print("_archive='%s'" % self.config["archive"])
-        print("source=(\"$pkgname-$pkgver.tar.gz::$_archive/v$pkgver.tar.gz\")")
+        print("source=(\"$pkgname-$pkgver.tar.gz::$_archive/$pkgver.tar.gz\")")
         print("sha256sums=('%s')" % self.compute_hash())
 
     def compute_hash(self):
-        link = "%s/v%s.tar.gz" % (self.config["archive"], self.config["pkgver"])
-        file = "v%s.tar.gz" % self.config["pkgver"]
+        link = "%s/%s.tar.gz" % (self.config["archive"], self.config["pkgver"])
+        file = "%s.tar.gz" % self.config["pkgver"]
         logging.debug("Downloading '%s' as '%s'" % (link, file))
         urllib.request.urlretrieve(link, file)
         hash = b""

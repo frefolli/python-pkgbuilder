@@ -5,8 +5,8 @@ env:
  VERSION: "v${{ github.head_ref || github.ref_name }}"
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - '[0-9]+.[0-9]+.[0-9]+'
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
@@ -18,12 +18,12 @@ jobs:
         with:
           fetch-depth: 0
       - name: Generate PKGBUILD
-        run: python -m pkgbuilder --version "${{ env.VERSION }}"  > PKGBUILD
+        run: python -m pkgbuilder --version "${{ env.BRANCH_NAME }}"  > PKGBUILD
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "${{ env.VERSION }}"
           prerelease: true
-          title: "Latest ${{ env.BRANCH_NAME }} Build"
+          title: "Latest ${{ env.VERSION }} Build"
           files: |
             PKGBUILD
