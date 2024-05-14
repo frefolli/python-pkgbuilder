@@ -5,8 +5,8 @@ env:
  VERSION: "v${{ github.head_ref || github.ref_name }}"
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*'
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
