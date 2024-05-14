@@ -57,8 +57,8 @@ class Pkgbuilder:
         print("sha256sums=('%s')" % self.compute_hash())
 
     def compute_hash(self):
-        link = "%s/%s.tar.gz" % (self.config["archive"], self.config["pkgver"])
-        file = "%s.tar.gz" % self.config["pkgver"]
+        link = "%s/v%s.tar.gz" % (self.config["archive"], self.config["pkgver"])
+        file = "v%s.tar.gz" % self.config["pkgver"]
         logging.debug("Downloading '%s' as '%s'" % (link, file))
         urllib.request.urlretrieve(link, file)
         hash = b""
