@@ -4,7 +4,7 @@ people:
     email: "francesco.refolli@gmail.com"
     role: "Contributor & Maintainer"
 pkgname: "python-pkgbuilder"
-pkgver: "1.0.1-beta"
+pkgver: "1.0.1"
 pkgrel: 1
 pkgdesc: "Declarative PKGBUILD automatic generation"
 license: 'GPL-3.0-or-later'
