@@ -1,0 +1,29 @@
+name: Downloads pkgbuilder and calls it
+
+on:
+  workflow_call:
+    inputs:
+      cache-path:
+        required: true
+        type: string
+      output-path:
+        required: false
+        default: "PKGBUILD"
+        type: string
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Downloads PKGBUILDER
+        run: |
+          if [ -f "${{ inputs.cache-path }}/python-pkgbuilder" ]; then
+            cd "${{ inputs.cache-path }}/python-pkgbuilder"
+            git pull
+          else
+            git clone https://github.com/frefolli/python-pkgbuilder/ "${{ inputs.cache-path }}/python-pkgbuilder"
+          fi
+      - name: Generate PKGBUILD
+        run: |
+          # Builds a symlink to call it from here
+          ln -sf "${{ inputs.cache-path }}/python-pkgbuilder/pkgbuilder" pkgbuilder
+          python -m pkgbuilder > ${{ inputs.output-path }}
