@@ -23,7 +23,7 @@ jobs:
           path: ~/.cache
           key: ${{ runner.os }}-cache
           restore-keys: ${{ runner.os }}-m2
-      - uses: frefolli/python-pkgbuilder/.github/workflows/download-and-run.yml
+      - uses: frefolli/action-pkgbuilder@master
         with:
           cache-path: ~/.cache
           output-path: PKGBUILD
